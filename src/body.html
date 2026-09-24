@@ -1,0 +1,490 @@
+<!-- Cursor -->
+<div class="cursor" id="cursor" aria-hidden="true"><div class="cursor__dot"></div></div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a href="#" class="nav__brand" aria-label="D'ORÉ Anahata — Casa de Alquimia Solar">
+    <img class="nav__logo" src="https://doreanahata.co/assets/logo.svg" alt="D'ORÉ Anahata — Casa de Alquimia Solar" />
+  </a>
+  <nav class="nav__pills" aria-label="Principal">
+    <a class="pill pill--nav" href="#intro">La Casa</a>
+    <a class="pill pill--nav" href="#activador">El Activador</a>
+    <a class="pill pill--nav" href="#ritual">El Ritual</a>
+    <a class="pill pill--nav" href="#portal">El Portal</a>
+  </nav>
+  <a href="#producto" class="btn btn--gold btn--sm nav__cta" data-magnetic>Reclama tu derecho a la luz</a>
+  <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav__progress" id="navProgress"></div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu__nav" aria-label="Menú móvil">
+    <a href="#intro">La Casa</a>
+    <a href="#activador">El Activador</a>
+    <a href="#ritual">El Ritual</a>
+    <a href="#portal">El Portal</a>
+    <a href="#producto" class="btn btn--gold">Reclama tu derecho a la luz</a>
+  </nav>
+</div>
+
+<main>
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="hero__ambient" id="heroAmbient">
+    <img src="https://doreanahata.co/assets/photos/hero-ambient.jpg" alt="" />
+  </div>
+  <div class="hero__sun" aria-hidden="true"></div>
+  <canvas class="hero__gl" id="gl-hero" aria-hidden="true"></canvas>
+  <div class="hero__scrim" id="heroScrim"></div>
+
+  <div class="hero__product" id="heroProduct">
+    <div class="hero__glow"></div>
+    <img src="https://doreanahata.co/assets/photos/hero-product.jpg" alt="Frasco del Activador Solar D'ORÉ Anahata" />
+  </div>
+  <canvas class="hero__particles" id="heroParticles" aria-hidden="true"></canvas>
+
+  <!-- Phase 1 -->
+  <div class="hero__phase hero__phase--1" id="heroPhase1">
+    <span class="eyebrow eyebrow--light">Casa de Alquimia Solar · Colombia</span>
+    <h1 class="hero__title">
+      <span>No solo es un bronceador,</span>
+      <span class="hero__accent"><em>tambien hidrata.</em></span>
+    </h1>
+    <p class="hero__sub">D'ORÉ es un aceite corporal hidratante de uso diario, formulado con aceites botanicos, que acompaña tu bronceado cuando te expones al sol.</p>
+    <div class="hero__actions">
+      <a href="#producto" class="btn btn--gold cta__pulse-btn" data-magnetic>Reclama tu derecho a la luz</a>
+      <a href="#intro" class="btn btn--ghost" data-magnetic>Conoce mas de D'ORÉ ANAHATA</a>
+    </div>
+    <div class="hero__tags">
+      <span class="pill pill--tag">Activador solar para una piel bronceada</span>
+      <span class="pill pill--tag">Ritual 20 min</span>
+      <span class="pill pill--tag">Portal Anahata Meditacion 528Hz</span>
+      <span class="pill pill--tag">Comunidad</span>
+    </div>
+  </div>
+
+  <!-- Phase 2 — Ecosistema -->
+  <div class="hero__phase hero__phase--2" id="heroPhase2">
+    <div class="eco__head">
+      <svg class="eco__sigil" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+        <line x1="50" y1="4" x2="50" y2="18"/><line x1="50" y1="82" x2="50" y2="96"/>
+        <line x1="4" y1="50" x2="18" y2="50"/><line x1="82" y1="50" x2="96" y2="50"/>
+        <line x1="17" y1="17" x2="27" y2="27"/><line x1="73" y1="73" x2="83" y2="83"/>
+        <line x1="83" y1="17" x2="73" y2="27"/><line x1="27" y1="73" x2="17" y2="83"/>
+        <path d="M62 50a14 14 0 1 1-9.5-13.3A11 11 0 1 0 62 50z" fill="currentColor" stroke="none"/>
+      </svg>
+      <span class="eco__eyebrow">Ecosistema</span>
+      <div class="eco__brand">D'ORÉ</div>
+      <span class="eco__anahata">Anahata</span>
+    </div>
+
+    <article class="hero__feature hero__feature--tl">
+      <svg class="eco__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M13 3h6v3h-6z"/><path d="M14 6v3M18 6v3"/><path d="M10 12c0-2 1.5-3 3-3h6c1.5 0 3 1 3 3v14a3 3 0 0 1-3 3h-6a3 3 0 0 1-3-3z"/><path d="M10 17h12"/>
+      </svg>
+      <span class="hero__feature-num">El Producto</span>
+      <h3>D'ORÉ</h3>
+      <span class="eco__label">Activador Solar</span>
+      <p>Ideal para tu exposición al sol y en interiores: hidrata tu piel.</p>
+    </article>
+
+    <article class="hero__feature hero__feature--tr">
+      <svg class="eco__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="16" cy="16" r="5"/><path d="M16 3v4M16 25v4M3 16h4M25 16h4M6.8 6.8l2.8 2.8M22.4 22.4l2.8 2.8M25.2 6.8l-2.8 2.8M9.6 22.4l-2.8 2.8"/>
+      </svg>
+      <span class="hero__feature-num">El Movimiento</span>
+      <h3 class="eco__quote">«Reclamamos nuestro derecho a la luz.»</h3>
+      <p>Desde aquí te desmitificaremos «La Amenaza del Sol» y te entregaremos la verdad con Educación Solar.</p>
+    </article>
+
+    <article class="hero__feature hero__feature--bl">
+      <svg class="eco__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="16" cy="16" r="12"/><circle cx="16" cy="16" r="7"/><circle cx="16" cy="16" r="2"/>
+      </svg>
+      <span class="hero__feature-num">El Portal</span>
+      <h3>Anahata</h3>
+      <span class="eco__label">Meditación 528Hz</span>
+      <p>Te entregaremos hábitos, consciencia, meditación, beneficios del sol y contenido ontológico para que brilles desde adentro.</p>
+    </article>
+
+    <article class="hero__feature hero__feature--br">
+      <svg class="eco__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M16 3l3.2 8.4L28 14.5l-8.8 3.1L16 26l-3.2-8.4L4 14.5l8.8-3.1z"/>
+      </svg>
+      <span class="hero__feature-num">El Mensajero</span>
+      <h3>Solmahaira</h3>
+      <p>Una mujer con amplio recorrido por el mundo, entendiendo los beneficios y propiedades que trae el astro mayor. Ella está lista para guiarte con tu derecho a la luz: el portal, el movimiento y nuestro chat de atención personalizada.</p>
+    </article>
+
+    <div class="eco__foot">
+      <p class="eco__closing">Un ecosistema para recordar quién eres.</p>
+      <p class="eco__claim">Tu luz, tu verdad, tu derecho.</p>
+      <ul class="eco__strip">
+        <li><strong>Producto</strong><span>Cuida tu piel</span></li>
+        <li><strong>Movimiento</strong><span>Educa tu mente</span></li>
+        <li><strong>Portal</strong><span>Transforma tu ser</span></li>
+        <li><strong>Mensajero</strong><span>Guía tu camino</span></li>
+      </ul>
+      <a href="#intro" class="btn btn--ghost btn--sm eco__more" style="margin-top:1rem">Conoce la Casa →</a>
+    </div>
+  </div>
+
+  <div class="hero__scroll" aria-hidden="true"><span>Scroll</span><i></i></div>
+</section>
+
+<!-- ============ INTRO / BENTO ============ -->
+<section class="intro" id="intro">
+  <div class="wrap">
+    <div class="intro__head rv">
+      <div>
+        <span class="eyebrow">Tu Alquimia Solar</span>
+        <h2 class="display"><strong>Comienza Aqui.</strong></h2>
+      </div>
+    </div>
+    <div class="bento">
+      <div class="bento__item bento__item--hero rv" data-tilt>
+        <img src="https://doreanahata.co/assets/photos/alquimia-01.jpg" alt="El aceite Anahata sostenido entre dos manos sobre fondo neutro." loading="lazy" />
+      </div>
+      <div class="bento__item bento__item--side rv" data-d=".08" data-tilt>
+        <img src="https://doreanahata.co/assets/photos/alquimia-02.jpg" alt="Piel dorada por el sol sosteniendo el frasco Anahata." loading="lazy" />
+      </div>
+      <div class="bento__item bento__item--text rv" data-d=".16">
+        <h3>Activa tu luz. Es tu derecho.</h3>
+        <p>Menos tiempo bajo el sol. Más consciencia. Más hidratación. Más color. Conoce el ritual que está cambiando la forma de exponernos al sol.</p>
+        <a href="#ritual" class="btn btn--gold btn--sm" data-magnetic style="align-self:flex-start">Comienza tu ritual →</a>
+      </div>
+      <div class="bento__item bento__item--small rv" data-tilt>
+        <img src="https://doreanahata.co/assets/photos/producto-mar.jpg" alt="Piel bronceada junto al mar con el frasco del Activador Solar D'ORÉ Anahata sobre un muro de piedra." loading="lazy" />
+      </div>
+      <div class="bento__item bento__item--extra rv" data-d=".08" data-tilt>
+        <img src="https://doreanahata.co/assets/photos/alquimia-04.jpg" alt="Frasco del aceite corporal Anahata sostenido en reposo." loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span>Alquimia Solar ✦</span><span>Aceites Botanicos ✦</span><span>Ritual 20 Minutos ✦</span><span>Edicion Inaugural ✦</span><span>350 Unidades ✦</span><span>Hecho en Colombia ✦</span><span>Meditacion 528Hz ✦</span><span>Piel Hidratada y Viva ✦</span>
+    <span>Alquimia Solar ✦</span><span>Aceites Botanicos ✦</span><span>Ritual 20 Minutos ✦</span><span>Edicion Inaugural ✦</span><span>350 Unidades ✦</span><span>Hecho en Colombia ✦</span><span>Meditacion 528Hz ✦</span><span>Piel Hidratada y Viva ✦</span>
+  </div>
+</div>
+
+<!-- ============ TRANSFORM ============ -->
+<section class="transform" id="transform">
+  <div class="transform__sticky">
+    <div class="transform__side transform__side--before">
+      <img src="https://doreanahata.co/assets/photos/transform-scene.jpg" alt="" loading="lazy" />
+      <div class="transform__overlay transform__overlay--cold"></div>
+    </div>
+    <div class="transform__side transform__side--after">
+      <img src="https://doreanahata.co/assets/photos/transform-scene.jpg" alt="Logotipo D'ORÉ tallado a la luz del sol" loading="lazy" />
+      <div class="transform__overlay transform__overlay--warm"></div>
+    </div>
+    <canvas class="transform__particles" id="transformParticles" aria-hidden="true"></canvas>
+    <span class="transform__label transform__label--before">Desconexion</span>
+    <span class="transform__label transform__label--after">Conexion</span>
+  </div>
+</section>
+
+<!-- ============ FORMULA ============ -->
+<section class="formula" id="formula">
+  <div class="wrap">
+    <div class="formula__equation rv">
+      <span>Sol</span><span class="formula__op">+</span>
+      <span>Hidratacion</span><span class="formula__op">+</span>
+      <span>Consciencia</span><span class="formula__op">=</span>
+      <span class="formula__result"><img class="formula__emblem" src="https://doreanahata.co/assets/logo.svg" alt="D'ORÉ" /></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES / EL ACTIVADOR ============ -->
+<section class="services" id="activador">
+  <div class="wrap">
+    <div class="services__head rv">
+      <span class="eyebrow">El arte de la formula</span>
+      <h2 class="display">Aceites Botanicos, <strong>Ritual Consciente.</strong></h2>
+      <a href="#producto" class="pill pill--outline">Ver producto →</a>
+    </div>
+    <div class="services__layout">
+      <div class="services__list">
+        <div class="svc-item rv">
+          <span class="svc-item__num">01</span>
+          <div class="svc-item__body">
+            <h4>Formulado con Aceites Botanicos</h4>
+            <p>Argan, jojoba, almendra dulce y una mezcla omega-linoleica. Textura seca al tacto, sin sensacion grasa.</p>
+          </div>
+          <span class="svc-item__arrow">→</span>
+        </div>
+        <div class="svc-item rv" data-d=".06">
+          <span class="svc-item__num">02</span>
+          <div class="svc-item__body">
+            <h4>Hidrata Mientras Acompaña tu Bronceado</h4>
+            <p>Es un hidratante corporal por si solo. El tono calido se construye sobre piel nutrida y viva, no sobre piel seca.</p>
+          </div>
+          <span class="svc-item__arrow">→</span>
+        </div>
+        <div class="svc-item rv" data-d=".12">
+          <span class="svc-item__num">03</span>
+          <div class="svc-item__body">
+            <h4>Uso Diario, No Solo de Playa</h4>
+            <p>No esperes el verano. D'ORÉ es tu aceite de cada dia; el sol hace el resto cuando te expones de forma consciente.</p>
+          </div>
+          <span class="svc-item__arrow">→</span>
+        </div>
+        <div class="svc-item rv" data-d=".18">
+          <span class="svc-item__num">04</span>
+          <div class="svc-item__body">
+            <h4>Guiado por el Portal Anahata</h4>
+            <p>Una practica corta acompañada de meditacion y educacion solar desde el Portal. Ritual, no rutina.</p>
+          </div>
+          <span class="svc-item__arrow">→</span>
+        </div>
+      </div>
+
+      <div class="services__visual">
+        <div class="services__img-main rv">
+          <img src="https://doreanahata.co/assets/photos/producto-escalones.jpg" alt="El Activador Solar D'ORÉ Anahata sostenido bajo el sol de la tarde." loading="lazy" />
+        </div>
+        <div class="services__img-side rv" data-d=".1">
+          <img src="https://doreanahata.co/assets/photos/producto-manos.jpg" alt="Detalle del frasco del Activador Solar D'ORÉ Anahata sostenido entre las manos." loading="lazy" />
+        </div>
+        <!-- Botanical orbit -->
+        <div class="botanical" id="botanical" aria-hidden="true">
+          <svg class="botanical__item" width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="#9C7B6E" stroke-width="1.3" stroke-linecap="round"><path d="M24 44V22"/><path d="M24 30c-8 0-12-6-12-14 8 0 12 6 12 14z" fill="rgba(196,162,101,.35)"/><path d="M24 24c6 0 10-5 10-11-6 0-10 5-10 11z" fill="rgba(196,162,101,.25)"/></svg>
+          <svg class="botanical__item" width="38" height="38" viewBox="0 0 48 48" fill="none" stroke="#B8956A" stroke-width="1.3" stroke-linecap="round"><ellipse cx="24" cy="24" rx="7" ry="16" fill="rgba(201,168,124,.35)" transform="rotate(30 24 24)"/><path d="M24 40V28"/></svg>
+          <svg class="botanical__item" width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#9C7B6E" stroke-width="1.2"><g fill="rgba(253,251,247,.9)"><circle cx="24" cy="12" r="6"/><circle cx="35" cy="20" r="6"/><circle cx="31" cy="33" r="6"/><circle cx="17" cy="33" r="6"/><circle cx="13" cy="20" r="6"/></g><circle cx="24" cy="24" r="3.5" fill="#C4A265" stroke="none"/></svg>
+          <svg class="botanical__item" width="36" height="36" viewBox="0 0 48 48" fill="none" stroke="#B8956A" stroke-width="1.3" stroke-linecap="round"><path d="M10 38C10 20 20 10 38 10c0 18-10 28-28 28z" fill="rgba(156,123,110,.25)"/><path d="M10 38L30 18"/></svg>
+          <svg class="botanical__item" width="40" height="40" viewBox="0 0 48 48" fill="none" stroke="#9C7B6E" stroke-width="1.3" stroke-linecap="round"><path d="M24 44V8"/><path d="M24 16c-6-1-9-5-9-9 6 0 9 4 9 9zM24 16c6-1 9-5 9-9-6 0-9 4-9 9zM24 28c-6-1-9-5-9-9 6 0 9 4 9 9zM24 28c6-1 9-5 9-9-6 0-9 4-9 9z" fill="rgba(196,162,101,.3)"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRODUCT ============ -->
+<section class="product" id="producto">
+  <div class="wrap">
+    <div class="product__head rv">
+      <span class="eyebrow eyebrow--light">Edicion Inaugural</span>
+      <h2 class="display display--light">El sol es tu mejor aliado, <strong>reclama tu derecho</strong></h2>
+    </div>
+    <div class="product__showcase">
+      <div class="product__circle rv" data-tilt>
+        <div class="product__ring"></div>
+        <img src="https://doreanahata.co/assets/photos/producto-frasco.jpg" alt="Frasco del Activador Solar D'ORÉ Anahata apoyado en piedra al sol, junto a una mano." loading="lazy" />
+        <span class="product__badge">350 frascos numerados</span>
+      </div>
+      <div class="product__info rv" data-d=".1">
+        <h3>D'ORÉ · Aceite Corporal Hidratante</h3>
+        <p>Uso diario · 100 ml e / 3.38 fl. oz.</p>
+        <ul class="product__includes">
+          <li><span>✦</span>Aceite corporal hidratante · 100 ml, con dispensador spray</li>
+          <li><span>✦</span>Acceso al Portal Anahata via QR</li>
+          <li><span>✦</span>Programa 21 dias + meditaciones guiadas</li>
+          <li><span>✦</span>Envio incluido a toda Colombia</li>
+        </ul>
+        <div class="product__price">
+          <div class="product__value">$<span data-counter="129900" data-format="price">0</span> <em>COP</em></div>
+          <span class="product__note">Precio unico · envio incluido</span>
+        </div>
+        <a href="#" class="btn btn--gold btn--block cta__pulse-btn" id="buyBtn" data-magnetic>Reclama tu derecho a la luz ☀</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RITUAL ============ -->
+<section class="ritual" id="ritual">
+  <div class="ritual__header">
+    <div class="wrap">
+      <div class="section-head rv">
+        <span class="eyebrow">El metodo Anahata</span>
+        <h2 class="display">El Ritual de los <strong>20 Minutos.</strong></h2>
+        <p class="lede">Una ventana consciente de exposicion al sol: corta, guiada y hecha para que vivas tu relacion con el sol con intencion.</p>
+      </div>
+    </div>
+  </div>
+  <div class="ritual__cinema">
+    <div class="ritual__viewport">
+      <div class="ritual__slide" data-slide="0">
+        <img src="https://doreanahata.co/assets/photos/ritual-prepara.jpg" alt="Aplicando D'ORÉ sobre la piel" loading="lazy" />
+        <div class="ritual__grad"></div>
+        <div class="ritual__text">
+          <span class="ritual__min">0'</span>
+          <h4>Preparas</h4>
+          <p>Aplicas D'ORÉ sobre piel limpia e hidratada.</p>
+        </div>
+      </div>
+      <div class="ritual__slide" data-slide="1">
+        <img src="https://doreanahata.co/assets/photos/ritual-respiras.jpg" alt="Respirando con la meditación guiada" loading="lazy" />
+        <div class="ritual__grad"></div>
+        <div class="ritual__text">
+          <span class="ritual__min">5'</span>
+          <h4>Respiras</h4>
+          <p>Meditacion guiada desde el Portal.</p>
+        </div>
+      </div>
+      <div class="ritual__slide" data-slide="2">
+        <img src="https://doreanahata.co/assets/photos/ritual-habitas.jpg" alt="Sintiendo el sol" loading="lazy" />
+        <div class="ritual__grad"></div>
+        <div class="ritual__text">
+          <span class="ritual__min">12'</span>
+          <h4>Habitas</h4>
+          <p>Sientes el sol; tu piel absorbe la practica.</p>
+        </div>
+      </div>
+      <div class="ritual__slide ritual__slide--portrait" data-slide="3">
+        <img src="https://doreanahata.co/assets/photos/img_1033.jpg" alt="Piel viva y cálida al cerrar el ritual" loading="lazy" />
+        <div class="ritual__grad"></div>
+        <div class="ritual__text">
+          <span class="ritual__min">20'</span>
+          <h4>Cierras</h4>
+          <p>Piel viva y calida. Cierras el ritual y agradeces al sol.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PORTAL ============ -->
+<section class="portal" id="portal">
+  <canvas class="portal__gl" id="gl-portal" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="section-head section-head--center rv">
+      <span class="eyebrow eyebrow--light">Circulo Anahata</span>
+      <h2 class="display display--light">Del sol exterior <strong>al portal interior.</strong></h2>
+      <p class="lede lede--light">Tu compra abre el Portal Anahata via QR. No accedes a un producto: perteneces a un ecosistema de practica solar consciente.</p>
+    </div>
+
+    <div class="portal__carousel">
+      <div class="portal__track">
+        <article class="portal__card rv" data-tilt>
+          <span class="portal__icon" aria-hidden="true">◉</span>
+          <h3>Solmahaira</h3>
+          <p>La voz y guia del Portal. Reflexiones diarias sobre la relacion entre el ser humano y el sol.</p>
+        </article>
+        <article class="portal__card rv" data-d=".08" data-tilt>
+          <span class="portal__icon" aria-hidden="true">◎</span>
+          <h3>Meditaciones 528Hz</h3>
+          <p>Sesiones guiadas que acompañan tus 20 minutos de exposicion ritualizada.</p>
+        </article>
+        <article class="portal__card rv" data-d=".16" data-tilt>
+          <span class="portal__icon" aria-hidden="true">◈</span>
+          <h3>Educacion Solar</h3>
+          <p>Fototipos, horarios, hidratacion y lectura del propio cuerpo. Conocimiento, no jerga.</p>
+        </article>
+      </div>
+    </div>
+
+    <div class="reto rv">
+      <div class="reto__head">
+        <h3>Reto 21 Dias</h3>
+        <p>Un dia = una practica + una meditacion + una micro-leccion. El motor del habito y de la comunidad.</p>
+      </div>
+      <div class="reto__grid" id="retoGrid" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MANIFESTO ============ -->
+<section class="manifesto" id="manifesto">
+  <div class="manifesto__bg">
+    <img src="https://doreanahata.co/assets/photos/hero-ambient.jpg" alt="" loading="lazy" />
+  </div>
+  <div class="wrap">
+    <div class="manifesto__inner">
+      <img class="manifesto__logo" src="https://doreanahata.co/assets/logo.svg" alt="D'ORÉ" />
+      <blockquote class="manifesto__quote">
+        <p class="manifesto__line">No nacimos para vivir bajo techos artificiales.</p>
+        <p class="manifesto__line">Nacimos para volver a la fuente —</p>
+        <p class="manifesto__line">para recordar que el sol no es un enemigo, sino el primer maestro.</p>
+        <cite class="manifesto__cite">— Solmahaira · Guia del Portal Anahata</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta" id="cta">
+  <div class="cta__rays" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="cta__grid">
+      <div class="cta__glass cta__b2b rv">
+        <span class="eyebrow">Para spas y centros de bienestar</span>
+        <h3>Lleva el Ritual Anahata a tu espacio.</h3>
+        <p>Trabajamos por consignacion con spas y centros esteticos que comparten una mirada consciente del cuidado de la piel. Formacion de ritual incluida.</p>
+        <form class="form" id="b2bForm" aria-label="Contacto B2B">
+          <input type="email" name="email" placeholder="tu@correo.com" required maxlength="254" />
+          <input type="text" name="lugar" placeholder="Nombre de tu spa o centro" maxlength="120" />
+          <div class="form__hp" aria-hidden="true">
+            <label>No llenar<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+          </div>
+          <button type="submit" class="btn btn--gold btn--sm" data-magnetic>Quiero más información</button>
+          <p class="form__consent">Al enviar autorizas a D'ORÉ Anahata a contactarte y a tratar tus datos para esta solicitud.</p>
+        </form>
+        <p class="cta__ok" id="b2bOk" hidden></p>
+      </div>
+
+      <div class="cta__glass cta__lead rv" data-d=".1">
+        <img class="cta__logo" src="https://doreanahata.co/assets/logo.svg" alt="" />
+        <h3>Aún no estás listo para comprar</h3>
+        <p>Haz la meditación guiada y vive la experiencia D'ORÉ Anahata.</p>
+        <a href="https://www.youtube.com/@PORTALANAHATADORE" class="btn btn--gold cta__lead-btn cta__pulse-btn" target="_blank" rel="noopener" data-magnetic>Click aquí</a>
+      </div>
+    </div>
+
+    <div class="cta__finale">
+      <img src="https://doreanahata.co/assets/photos/hero-product.jpg" alt="https://doreanahata.co/assets/photos/hero-product.jpg" loading="lazy" />
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <img class="footer__logo" src="https://doreanahata.co/assets/logo.svg" alt="D'ORÉ Anahata" />
+        <span class="footer__tag">Casa de Alquimia Solar</span>
+      </div>
+      <div class="footer__cols">
+        <div>
+          <h5>Explorar</h5>
+          <a href="#intro">La Casa</a>
+          <a href="#activador">El Activador</a>
+          <a href="#ritual">El Ritual</a>
+          <a href="#portal">El Portal</a>
+        </div>
+        <div>
+          <h5>Comunidad</h5>
+          <a href="#portal">Reto 21 Dias</a>
+          <a href="#cta">Para spas</a>
+          <a href="#cta">Meditacion gratis</a>
+        </div>
+        <div>
+          <h5>Contacto</h5>
+          <a href="mailto:hola@doreanahata.co">hola@doreanahata.co</a>
+        </div>
+      </div>
+      <div class="footer__social">
+        <a href="https://www.instagram.com/doreanahataoficial" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+        <a href="https://www.youtube.com/@PORTALANAHATADORE" target="_blank" rel="noopener" aria-label="YouTube">YT</a>
+        <a href="https://wa.me/573012833011?text=Hola%2C%20quiero%20saber%20mas%20sobre%20D%27ORE%20Anahata." target="_blank" rel="noopener" aria-label="WhatsApp">WA</a>
+      </div>
+    </div>
+    <div class="footer__legal">
+      <p>D'ORÉ es un aceite corporal hidratante de uso diario formulado con aceites botanicos. Acompaña tu cuidado de la piel bajo exposicion solar consciente y no sustituye tu proteccion solar. Sigue los tiempos del ritual.</p>
+      <p class="footer__copy">Notificacion Sanitaria Obligatoria (INVIMA/NSO): <span>pendiente de obtencion — producto en fase de lista de espera.</span></p>
+      <p class="footer__copy">© 2026 D'ORÉ Anahata. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Activity toast -->
+<div class="proof" id="proof" role="status" aria-live="polite" hidden></div>
