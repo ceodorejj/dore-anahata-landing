@@ -414,6 +414,14 @@ if (!reduceMotion && !isStaticHero) {
   const heroPhase2 = document.getElementById("heroPhase2");
   const heroAmbient = document.getElementById("heroAmbient");
   if (heroSection && heroProduct) {
+    // GSAP owns the transform once it starts tweening scale/rotation on this
+    // element: it rewrites the whole inline `transform`, which silently drops
+    // the CSS `translate(-50%,-50%)` that keeps it centered on its left/top
+    // anchor. Bake that offset in as xPercent/yPercent so every subsequent
+    // left/top/scale/rotation tween keeps the element truly centered instead
+    // of drifting toward the bottom-right by half its own size.
+    gsap.set(heroProduct, { xPercent: -50, yPercent: -50, rotation: 15, scale: 1 });
+
     // Master timeline pinned to hero
     const heroTl = gsap.timeline({
       scrollTrigger: {
@@ -448,6 +456,7 @@ if (!reduceMotion && !isStaticHero) {
     // Transform product: scale down, center on the ecosystem axis, rotate to 0
     heroTl.to(heroProduct, {
       scale: 0.62, left: "50%", top: "50%", rotation: 0,
+      xPercent: -50, yPercent: -50,
       duration: 1.5, ease: "power2.inOut"
     }, 0);
 
