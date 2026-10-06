@@ -1128,38 +1128,12 @@ wireLeadForm(document.getElementById("b2bForm"), {
   statusEl: document.getElementById("b2bOk"),
 });
 
-// The reservation form is built on demand: the button becomes the form.
-const buyBtn = document.getElementById("buyBtn");
-if (buyBtn) {
-  buyBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-
-    const wrapper = document.createElement("div");
-    wrapper.innerHTML = `
-      <form class="form" id="reservaForm">
-        <input type="email" name="email" placeholder="tu@correo.com" required maxlength="254" />
-        <div class="form__hp" aria-hidden="true">
-          <label>No llenar<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
-        </div>
-        <button type="submit" class="btn btn--gold btn--sm" data-magnetic>Reservar</button>
-        <p class="form__consent">Sin cobro: reservas tu lugar en la lista de espera. Al enviar autorizas el tratamiento de tus datos para avisarte cuando abramos la venta.</p>
-      </form>
-      <p class="cta__ok" id="reservaOk" hidden></p>
-    `;
-
-    buyBtn.replaceWith(wrapper);
-
-    wireLeadForm(wrapper.querySelector("#reservaForm"), {
-      kind: "reserva",
-      sendingLabel: "Reservando...",
-      doneLabel: "Lugar reservado",
-      okMessage: "Reserva confirmada. Te avisamos apenas abramos la venta.",
-      statusEl: wrapper.querySelector("#reservaOk"),
-    });
-
-    wrapper.querySelector("input")?.focus();
-  });
-}
+// All "Reclama tu derecho a la luz" buttons (nav, hero, product section) are
+// plain links straight to the Shopify checkout (/cart/{variant}:1) — no JS
+// interception needed. Previously this button was swapped for a no-charge
+// waitlist reservation form while the product's sanitary registration
+// (NSO/INVIMA) was pending; now that registration is confirmed, it goes
+// straight to checkout like any other purchase button.
 
 // ============================================================
 // 17) REFRESH — recalculate all ScrollTrigger positions
