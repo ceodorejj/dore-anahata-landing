@@ -1087,7 +1087,7 @@ function wireLeadForm(form, { kind, okMessage, sendingLabel, doneLabel, statusEl
       email: data.get("email"),
       place: data.get("lugar") || undefined,
       website: data.get("website") || undefined,
-      consent: true,
+      consent: data.get("consent") === "true",
     });
 
     if (sent === "demo") {
