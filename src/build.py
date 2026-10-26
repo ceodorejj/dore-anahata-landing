@@ -9,6 +9,25 @@ html=f'''<!DOCTYPE html>
 <title>D'ORÉ Anahata - Aceite corporal hidratante de uso diario</title>
 <meta name="description" content="D'ORÉ es un aceite corporal hidratante de uso diario, formulado con aceites botanicos, que acompaña tu bronceado cuando te expones al sol. Edicion inaugural, 350 frascos numerados a mano." />
 <meta name="theme-color" content="#1A1A1A" />
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{{if(f.fbq)return;n=f.fbq=function(){{n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)}};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1061209366950588');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1061209366950588&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
 <script>
 /* Lite mode: phones, tablets, weaker machines and reduced-motion users get a
    CSS sun instead of the WebGL shader. Runs before first paint to avoid a flash. */
@@ -35,5 +54,5 @@ html=f'''<!DOCTYPE html>
 </body>
 </html>
 '''
-open('/mnt/user-data/outputs/dore-anahata-replica/index.html','w',encoding='utf-8').write(html)
+open('../index.html','w',encoding='utf-8').write(html)
 print(len(html))

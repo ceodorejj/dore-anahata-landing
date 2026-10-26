@@ -1106,6 +1106,9 @@ function wireLeadForm(form, { kind, okMessage, sendingLabel, doneLabel, statusEl
       form.reset();
       if (btn) btn.textContent = doneLabel;
       say(okMessage, false);
+      if (typeof window.fbq === "function") {
+        window.fbq("track", "Lead", { content_name: kind });
+      }
       return;
     }
 
@@ -1397,4 +1400,32 @@ requestAnimationFrame(() => {
 
   render();
   start();
+})();
+
+// ============================================================
+// META PIXEL — conversion event tracking beyond PageView
+// ============================================================
+(function () {
+  if (typeof window.fbq !== "function") return;
+
+  // "Reclama tu derecho a la luz" buttons (nav, mobile menu, hero, product
+  // section) all link straight to the Shopify checkout permalink.
+  document
+    .querySelectorAll('a[href*="myshopify.com/cart"]')
+    .forEach((el) => {
+      el.addEventListener("click", () => {
+        window.fbq("track", "InitiateCheckout", {
+          content_name: "D'ORÉ · Aceite Corporal Hidratante",
+          value: 159900,
+          currency: "COP",
+        });
+      });
+    });
+
+  // Floating WhatsApp button.
+  document.querySelectorAll(".whatsapp-float").forEach((el) => {
+    el.addEventListener("click", () => {
+      window.fbq("track", "Contact");
+    });
+  });
 })();
