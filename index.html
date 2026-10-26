@@ -7,8 +7,6 @@
 <meta name="description" content="D'ORÉ es un aceite corporal hidratante de uso diario, formulado con aceites botanicos, que acompaña tu bronceado cuando te expones al sol. Edicion inaugural, 350 frascos numerados a mano." />
 <meta name="theme-color" content="#1A1A1A" />
 <script>
-/* Lite mode: phones, tablets, weaker machines and reduced-motion users get a
-   CSS sun instead of the WebGL shader. Runs before first paint to avoid a flash. */
 (function(){var d=document.documentElement,n=navigator,lite=innerWidth<1024||(n.hardwareConcurrency&&n.hardwareConcurrency<=4)||(n.deviceMemory&&n.deviceMemory<=4)||matchMedia("(prefers-reduced-motion: reduce)").matches||matchMedia("(hover: none)").matches;if(lite)d.classList.add("is-lite");if(matchMedia("(max-height:520px) and (orientation:landscape)").matches)d.classList.add("is-static-hero");})();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -1670,6 +1668,81 @@ body{ overflow-wrap:break-word; }
   .whatsapp-float svg{ width:26px; height:26px; }
 }
 
+/* ============================================================
+   TESTIMONIALS — autoplay carousel
+   ============================================================ */
+.testimonials{
+  background:var(--arena-claro); padding:clamp(6rem,12vw,11rem) 0;
+}
+.testi{
+  position:relative; max-width:720px; margin-inline:auto;
+}
+.testi__viewport{
+  overflow:hidden; border-radius:var(--radius);
+}
+.testi__track{
+  display:flex; list-style:none;
+  transition:transform .6s var(--ease-out);
+}
+.testi__slide{
+  flex:0 0 100%; min-width:0;
+  display:flex; justify-content:center;
+}
+.testi-card{
+  width:100%; max-width:560px;
+  background:var(--arena); border:1px solid rgba(26,26,26,.06);
+  border-radius:var(--radius);
+  padding:clamp(2.2rem,5vw,3rem) clamp(1.6rem,4vw,2.6rem);
+  display:flex; flex-direction:column; align-items:center; text-align:center;
+  gap:.9rem;
+}
+.testi-card__avatar{
+  width:64px; height:64px; border-radius:50%;
+  display:grid; place-items:center;
+  font-family:var(--serif); font-weight:600; font-size:1.3rem;
+  color:var(--arena-claro); letter-spacing:.02em;
+  overflow:hidden;
+}
+.testi-card__avatar img{ width:100%; height:100%; object-fit:cover; }
+.testi-card__stars{
+  color:var(--oro); font-size:.95rem; letter-spacing:.15em;
+}
+.testi-card__quote{
+  font-family:var(--serif); font-size:clamp(1.05rem,2vw,1.28rem);
+  line-height:1.6; color:var(--ink); max-width:46ch;
+}
+.testi-card__name{
+  font-size:.82rem; letter-spacing:.04em; color:var(--ink-soft);
+  text-transform:uppercase;
+}
+.testi-card__name span{ color:rgba(26,26,26,.45); text-transform:none; letter-spacing:0; }
+
+.testi__arrow{
+  position:absolute; top:50%; translate:0 -50%;
+  width:40px; height:40px; border-radius:50%;
+  border:1px solid rgba(26,26,26,.15); background:var(--arena-claro);
+  color:var(--ink); font-size:1.3rem; line-height:1; cursor:pointer;
+  display:grid; place-items:center;
+  transition:background .25s var(--ease), transform .25s var(--ease), border-color .25s var(--ease);
+}
+.testi__arrow:hover{ background:var(--negro-humo); color:var(--arena); border-color:transparent; }
+.testi__arrow--prev{ left:clamp(-8px,-4vw,-54px); }
+.testi__arrow--next{ right:clamp(-8px,-4vw,-54px); }
+
+.testi__dots{
+  display:flex; justify-content:center; gap:.5rem; margin-top:1.6rem;
+}
+.testi__dots button{
+  width:9px; height:9px; border-radius:50%; border:0; padding:0;
+  background:rgba(26,26,26,.18); cursor:pointer;
+  transition:background .25s var(--ease), transform .25s var(--ease);
+}
+.testi__dots button.is-active{ background:var(--oro); transform:scale(1.25); }
+
+@media (max-width:760px){
+  .testi__arrow{ display:none; }
+}
+
 </style>
 <script type="importmap">
 { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
@@ -1839,6 +1912,76 @@ body{ overflow-wrap:break-word; }
       <div class="bento__item bento__item--extra rv" data-d=".08" data-tilt>
         <img src="https://doreanahata.co/assets/photos/alquimia-04.jpg" alt="Frasco del aceite corporal Anahata sostenido en reposo." loading="lazy" />
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIOS ============ -->
+<section class="testimonials" id="testimonios">
+  <div class="wrap">
+    <div class="section-head section-head--center rv">
+      <span class="eyebrow">Historias del Ritual</span>
+      <h2 class="display">Voces que ya <strong>encontraron su luz.</strong></h2>
+    </div>
+
+    <div
+      class="testi rv"
+      id="testiCarousel"
+      data-autoplay="5000"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Testimonios de clientas y clientes D'ORÉ Anahata"
+    >
+      <div class="testi__viewport">
+        <ul class="testi__track" id="testiTrack">
+
+          <!-- PLACEHOLDER 1 — reemplazar foto, nombre, ciudad y cita -->
+          <li class="testi__slide" role="group" aria-roledescription="slide" aria-label="Testimonio 1 de 4">
+            <div class="testi-card">
+              <div class="testi-card__avatar" style="background:var(--oro)" aria-hidden="true">MJ</div>
+              <div class="testi-card__stars" aria-hidden="true">★★★★★</div>
+              <p class="testi-card__quote">“Desde que empecé el ritual con D'ORÉ, mi piel cambió por completo. Es mucho más que un aceite: es un momento del día que espero.”</p>
+              <p class="testi-card__name">María José <span>· Bogotá</span></p>
+            </div>
+          </li>
+
+          <!-- PLACEHOLDER 2 — reemplazar foto, nombre, ciudad y cita -->
+          <li class="testi__slide" role="group" aria-roledescription="slide" aria-label="Testimonio 2 de 4">
+            <div class="testi-card">
+              <div class="testi-card__avatar" style="background:var(--terracota)" aria-hidden="true">CS</div>
+              <div class="testi-card__stars" aria-hidden="true">★★★★★</div>
+              <p class="testi-card__quote">“La meditación guiada del Portal Anahata hizo toda la diferencia. Siento que cuido mi piel y mi mente al mismo tiempo.”</p>
+              <p class="testi-card__name">Camila S. <span>· Medellín</span></p>
+            </div>
+          </li>
+
+          <!-- PLACEHOLDER 3 — reemplazar foto, nombre, ciudad y cita -->
+          <li class="testi__slide" role="group" aria-roledescription="slide" aria-label="Testimonio 3 de 4">
+            <div class="testi-card">
+              <div class="testi-card__avatar" style="background:var(--ocre)" aria-hidden="true">LR</div>
+              <div class="testi-card__stars" aria-hidden="true">★★★★★</div>
+              <p class="testi-card__quote">“Pedí el frasco de la edición inaugural numerado y se siente único. El empaque, el aroma, todo está pensado con intención.”</p>
+              <p class="testi-card__name">Laura R. <span>· Cartagena</span></p>
+            </div>
+          </li>
+
+          <!-- PLACEHOLDER 4 — reemplazar foto, nombre, ciudad y cita -->
+          <li class="testi__slide" role="group" aria-roledescription="slide" aria-label="Testimonio 4 de 4">
+            <div class="testi-card">
+              <div class="testi-card__avatar" style="background:var(--terracota-2)" aria-hidden="true">DA</div>
+              <div class="testi-card__stars" aria-hidden="true">★★★★★</div>
+              <p class="testi-card__quote">“Llevo 21 días con el Reto Anahata y no solo cambió mi piel, cambió la forma en que me relaciono con el sol.”</p>
+              <p class="testi-card__name">Daniela A. <span>· Cali</span></p>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+
+      <button class="testi__arrow testi__arrow--prev" type="button" aria-label="Testimonio anterior">‹</button>
+      <button class="testi__arrow testi__arrow--next" type="button" aria-label="Testimonio siguiente">›</button>
+
+      <div class="testi__dots" id="testiDots" role="tablist" aria-label="Seleccionar testimonio"></div>
     </div>
   </div>
 </section>
@@ -3473,6 +3616,112 @@ requestAnimationFrame(() => {
     .catch(() => {
       /* offline or endpoint down: no toast, and no invented activity */
     });
+})();
+
+// ============================================================
+// TESTIMONIALS CAROUSEL — autoplay, dots, arrows, swipe, pause on hover
+// ============================================================
+(function () {
+  const root = document.getElementById("testiCarousel");
+  if (!root) return;
+
+  const track = document.getElementById("testiTrack");
+  const slides = [...track.children];
+  const dotsWrap = document.getElementById("testiDots");
+  const prevBtn = root.querySelector(".testi__arrow--prev");
+  const nextBtn = root.querySelector(".testi__arrow--next");
+  const interval = Number(root.dataset.autoplay) || 5000;
+
+  if (slides.length <= 1) {
+    if (dotsWrap) dotsWrap.hidden = true;
+    if (prevBtn) prevBtn.hidden = true;
+    if (nextBtn) nextBtn.hidden = true;
+    return;
+  }
+
+  let index = 0;
+  let timer = null;
+  let paused = false;
+
+  // Dots
+  const dots = slides.map((_, i) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.setAttribute("role", "tab");
+    b.setAttribute("aria-label", `Ir al testimonio ${i + 1}`);
+    b.addEventListener("click", () => goTo(i, true));
+    dotsWrap.appendChild(b);
+    return b;
+  });
+
+  function render() {
+    track.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle("is-active", i === index));
+  }
+
+  function goTo(i, userAction) {
+    index = (i + slides.length) % slides.length;
+    render();
+    if (userAction) restart();
+  }
+
+  function next() {
+    goTo(index + 1, false);
+  }
+
+  function start() {
+    stop();
+    timer = setInterval(() => {
+      if (!paused && !document.hidden) next();
+    }, interval);
+  }
+
+  function stop() {
+    if (timer) clearInterval(timer);
+    timer = null;
+  }
+
+  function restart() {
+    start();
+  }
+
+  prevBtn?.addEventListener("click", () => goTo(index - 1, true));
+  nextBtn?.addEventListener("click", () => goTo(index + 1, true));
+
+  // Pause on hover/focus (desktop)
+  root.addEventListener("mouseenter", () => (paused = true));
+  root.addEventListener("mouseleave", () => (paused = false));
+  root.addEventListener("focusin", () => (paused = true));
+  root.addEventListener("focusout", () => (paused = false));
+
+  // Swipe on touch devices
+  let touchStartX = 0;
+  let touchDeltaX = 0;
+  track.addEventListener(
+    "touchstart",
+    (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchDeltaX = 0;
+      paused = true;
+    },
+    { passive: true }
+  );
+  track.addEventListener(
+    "touchmove",
+    (e) => {
+      touchDeltaX = e.touches[0].clientX - touchStartX;
+    },
+    { passive: true }
+  );
+  track.addEventListener("touchend", () => {
+    const THRESHOLD = 40;
+    if (touchDeltaX > THRESHOLD) goTo(index - 1, true);
+    else if (touchDeltaX < -THRESHOLD) goTo(index + 1, true);
+    paused = false;
+  });
+
+  render();
+  start();
 })();
 
 </script>

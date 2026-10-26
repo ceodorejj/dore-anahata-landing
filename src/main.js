@@ -1292,3 +1292,109 @@ requestAnimationFrame(() => {
       /* offline or endpoint down: no toast, and no invented activity */
     });
 })();
+
+// ============================================================
+// TESTIMONIALS CAROUSEL — autoplay, dots, arrows, swipe, pause on hover
+// ============================================================
+(function () {
+  const root = document.getElementById("testiCarousel");
+  if (!root) return;
+
+  const track = document.getElementById("testiTrack");
+  const slides = [...track.children];
+  const dotsWrap = document.getElementById("testiDots");
+  const prevBtn = root.querySelector(".testi__arrow--prev");
+  const nextBtn = root.querySelector(".testi__arrow--next");
+  const interval = Number(root.dataset.autoplay) || 5000;
+
+  if (slides.length <= 1) {
+    if (dotsWrap) dotsWrap.hidden = true;
+    if (prevBtn) prevBtn.hidden = true;
+    if (nextBtn) nextBtn.hidden = true;
+    return;
+  }
+
+  let index = 0;
+  let timer = null;
+  let paused = false;
+
+  // Dots
+  const dots = slides.map((_, i) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.setAttribute("role", "tab");
+    b.setAttribute("aria-label", `Ir al testimonio ${i + 1}`);
+    b.addEventListener("click", () => goTo(i, true));
+    dotsWrap.appendChild(b);
+    return b;
+  });
+
+  function render() {
+    track.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle("is-active", i === index));
+  }
+
+  function goTo(i, userAction) {
+    index = (i + slides.length) % slides.length;
+    render();
+    if (userAction) restart();
+  }
+
+  function next() {
+    goTo(index + 1, false);
+  }
+
+  function start() {
+    stop();
+    timer = setInterval(() => {
+      if (!paused && !document.hidden) next();
+    }, interval);
+  }
+
+  function stop() {
+    if (timer) clearInterval(timer);
+    timer = null;
+  }
+
+  function restart() {
+    start();
+  }
+
+  prevBtn?.addEventListener("click", () => goTo(index - 1, true));
+  nextBtn?.addEventListener("click", () => goTo(index + 1, true));
+
+  // Pause on hover/focus (desktop)
+  root.addEventListener("mouseenter", () => (paused = true));
+  root.addEventListener("mouseleave", () => (paused = false));
+  root.addEventListener("focusin", () => (paused = true));
+  root.addEventListener("focusout", () => (paused = false));
+
+  // Swipe on touch devices
+  let touchStartX = 0;
+  let touchDeltaX = 0;
+  track.addEventListener(
+    "touchstart",
+    (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchDeltaX = 0;
+      paused = true;
+    },
+    { passive: true }
+  );
+  track.addEventListener(
+    "touchmove",
+    (e) => {
+      touchDeltaX = e.touches[0].clientX - touchStartX;
+    },
+    { passive: true }
+  );
+  track.addEventListener("touchend", () => {
+    const THRESHOLD = 40;
+    if (touchDeltaX > THRESHOLD) goTo(index - 1, true);
+    else if (touchDeltaX < -THRESHOLD) goTo(index + 1, true);
+    paused = false;
+  });
+
+  render();
+  start();
+})();
