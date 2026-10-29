@@ -1701,22 +1701,43 @@ body{ overflow-wrap:break-word; }
 .testi__dots{ display:none; }
 
 @media (max-width:760px){
-  .testi{ bottom:clamp(10%,15vh,18%); padding-inline:var(--gut); }
+  .testi{
+    bottom:clamp(8%,13vh,16%); padding-inline:var(--gut);
+    display:flex; justify-content:center; align-items:flex-end;
+  }
   .testi__viewport{
-    max-width:320px; margin-inline:auto; overflow:hidden; border-radius:16px;
+    position:relative; width:100%; max-width:280px; margin-inline:auto;
+    overflow:hidden; border-radius:16px;
   }
-  .testi__track{
-    flex-wrap:nowrap; gap:0; align-items:flex-start;
-    transition:transform .6s var(--ease-out);
-  }
+  /* Only the active slide stays in normal flow — it alone decides the
+     viewport's height, so one unusually tall screenshot can never push
+     the whole carousel (and the overlay's bottom-anchored position)
+     off the top of the pinned sand section. */
+  .testi__track{ display:block; }
   .testi__slide{
-    flex:0 0 100%; width:100%; animation:none;
+    width:100%; animation:none;
+    display:flex; justify-content:center; align-items:center;
+  }
+  .testi__slide:not(.is-active){
+    position:absolute; inset:0; opacity:0; pointer-events:none;
+  }
+  .testi__slide.is-active{
+    position:relative; opacity:1; pointer-events:auto;
+    transition:opacity .45s var(--ease-out);
   }
   .testi-card{
-    max-width:320px; margin-inline:auto;
+    width:100%; max-width:280px; margin-inline:auto;
+    display:flex; align-items:center; justify-content:center;
+  }
+  /* Safety cap: whatever the screenshot's own aspect ratio, it is scaled
+     down (never cropped) to fit the sticky section's limited height. */
+  .testi-card img{
+    width:auto; height:auto;
+    max-width:100%; max-height:40vh;
+    object-fit:contain; margin-inline:auto;
   }
   .testi__dots{
-    display:flex; justify-content:center; gap:.4rem; margin-top:.8rem;
+    display:flex; justify-content:center; gap:.4rem; margin-top:.7rem;
   }
   .testi__dots button{
     width:7px; height:7px; border-radius:50%; border:0; padding:0;

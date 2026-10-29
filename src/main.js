@@ -1333,7 +1333,11 @@ requestAnimationFrame(() => {
   });
 
   function render() {
-    track.style.transform = isCarousel() ? `translateX(-${index * 100}%)` : "none";
+    // CSS decides what "active" means per breakpoint: on mobile only the
+    // active slide stays in normal flow (so it alone sets the viewport's
+    // height); on desktop all slides are always visible regardless of
+    // this class.
+    slides.forEach((s, i) => s.classList.toggle("is-active", i === index));
     dots.forEach((d, i) => d.classList.toggle("is-active", i === index));
   }
 
