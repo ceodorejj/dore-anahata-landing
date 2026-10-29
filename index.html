@@ -1707,7 +1707,7 @@ body{ overflow-wrap:break-word; }
   gap:clamp(.7rem,2vw,1.3rem); list-style:none;
 }
 .testi__slide{
-  flex:0 0 auto; width:min(230px, 23vw);
+  flex:0 0 auto; width:min(252px, 21vw);
   animation:testiFloat 6.5s ease-in-out infinite;
 }
 .testi__slide:nth-child(2){ animation-delay:-1.6s; }
@@ -1720,56 +1720,37 @@ body{ overflow-wrap:break-word; }
 }
 
 .testi-card{
-  width:100%;
-  background:rgba(20,18,16,.45);
-  backdrop-filter:blur(18px) saturate(130%);
-  -webkit-backdrop-filter:blur(18px) saturate(130%);
-  border:1px solid rgba(244,239,230,.18);
-  border-radius:18px;
-  box-shadow:0 20px 50px rgba(0,0,0,.28);
-  padding:1.2rem 1.1rem;
-  display:flex; flex-direction:column; align-items:center; text-align:center;
-  gap:.45rem;
-  color:var(--arena);
-}
-.testi-card__avatar{
-  width:40px; height:40px; border-radius:50%;
-  display:grid; place-items:center;
-  font-family:var(--serif); font-weight:600; font-size:.9rem;
-  color:var(--arena-claro); letter-spacing:.02em;
+  background:rgba(20,18,16,.3);
+  backdrop-filter:blur(14px) saturate(130%);
+  -webkit-backdrop-filter:blur(14px) saturate(130%);
+  border:1px solid rgba(244,239,230,.22);
+  border-radius:16px;
+  box-shadow:0 20px 50px rgba(0,0,0,.3);
+  padding:6px;
   overflow:hidden;
 }
-.testi-card__avatar img{ width:100%; height:100%; object-fit:cover; }
-.testi-card__stars{ color:var(--oro); font-size:.76rem; letter-spacing:.12em; }
-.testi-card__quote{
-  font-family:var(--serif); font-size:.9rem; line-height:1.5;
-  color:var(--arena); max-width:27ch;
+.testi-card img{
+  display:block; width:100%; height:auto; border-radius:11px;
 }
-.testi-card__name{
-  font-size:.64rem; letter-spacing:.04em; color:rgba(244,239,230,.78);
-  text-transform:uppercase;
-}
-.testi-card__name span{ color:rgba(244,239,230,.48); text-transform:none; letter-spacing:0; }
 
 .testi__arrow{ display:none; }
 .testi__dots{ display:none; }
 
 @media (max-width:760px){
-  .testi{ bottom:clamp(12%,18vh,20%); padding-inline:var(--gut); }
+  .testi{ bottom:clamp(10%,15vh,18%); padding-inline:var(--gut); }
   .testi__viewport{
-    max-width:320px; margin-inline:auto; overflow:hidden; border-radius:18px;
+    max-width:320px; margin-inline:auto; overflow:hidden; border-radius:16px;
   }
   .testi__track{
-    flex-wrap:nowrap; gap:0;
+    flex-wrap:nowrap; gap:0; align-items:flex-start;
     transition:transform .6s var(--ease-out);
   }
   .testi__slide{
     flex:0 0 100%; width:100%; animation:none;
   }
   .testi-card{
-    max-width:320px; margin-inline:auto; padding:1.5rem 1.3rem;
+    max-width:320px; margin-inline:auto;
   }
-  .testi-card__quote{ max-width:30ch; font-size:.96rem; }
   .testi__dots{
     display:flex; justify-content:center; gap:.4rem; margin-top:.8rem;
   }
@@ -1989,43 +1970,33 @@ body{ overflow-wrap:break-word; }
       <div class="testi__viewport">
         <ul class="testi__track" id="testiTrack">
 
-          <!-- PLACEHOLDER 1 — reemplazar foto, nombre, ciudad y cita -->
-          <li class="testi__slide" role="group" aria-roledescription="slide" aria-label="Testimonio 1 de 4">
+          <li class="testi__slide" role="group" aria-roledescription="slide" aria-label="Testimonio 1 de 5">
             <div class="testi-card">
-              <div class="testi-card__avatar" style="background:var(--oro)" aria-hidden="true">MJ</div>
-              <div class="testi-card__stars" aria-hidden="true">★★★★★</div>
-              <p class="testi-card__quote">“Desde que empecé el ritual con D'ORÉ, mi piel cambió por completo. Es mucho más que un aceite: es un momento del día que espero.”</p>
-              <p class="testi-card__name">María José <span>· Bogotá</span></p>
+              <img src="assets/testimonios/testi-1.jpg" alt="Captura de un mensaje de voz de una clienta contando su experiencia con D'ORÉ Anahata." loading="lazy" />
             </div>
           </li>
 
-          <!-- PLACEHOLDER 2 — reemplazar foto, nombre, ciudad y cita -->
-          <li class="testi__slide" role="group" aria-roledescription="slide" aria-label="Testimonio 2 de 4">
+          <li class="testi__slide" role="group" aria-roledescription="slide" aria-label="Testimonio 2 de 5">
             <div class="testi-card">
-              <div class="testi-card__avatar" style="background:var(--terracota)" aria-hidden="true">CS</div>
-              <div class="testi-card__stars" aria-hidden="true">★★★★★</div>
-              <p class="testi-card__quote">“La meditación guiada del Portal Anahata hizo toda la diferencia. Siento que cuido mi piel y mi mente al mismo tiempo.”</p>
-              <p class="testi-card__name">Camila S. <span>· Medellín</span></p>
+              <img src="assets/testimonios/testi-2.jpg" alt="Reseña en video de una clienta mostrando el Activador Solar D'ORÉ Anahata." loading="lazy" />
             </div>
           </li>
 
-          <!-- PLACEHOLDER 3 — reemplazar foto, nombre, ciudad y cita -->
-          <li class="testi__slide" role="group" aria-roledescription="slide" aria-label="Testimonio 3 de 4">
+          <li class="testi__slide" role="group" aria-roledescription="slide" aria-label="Testimonio 3 de 5">
             <div class="testi-card">
-              <div class="testi-card__avatar" style="background:var(--ocre)" aria-hidden="true">LR</div>
-              <div class="testi-card__stars" aria-hidden="true">★★★★★</div>
-              <p class="testi-card__quote">“Pedí el frasco de la edición inaugural numerado y se siente único. El empaque, el aroma, todo está pensado con intención.”</p>
-              <p class="testi-card__name">Laura R. <span>· Cartagena</span></p>
+              <img src="assets/testimonios/testi-3.jpg" alt="Mensaje de una clienta elogiando el Activador Solar D'ORÉ Anahata." loading="lazy" />
             </div>
           </li>
 
-          <!-- PLACEHOLDER 4 — reemplazar foto, nombre, ciudad y cita -->
-          <li class="testi__slide" role="group" aria-roledescription="slide" aria-label="Testimonio 4 de 4">
+          <li class="testi__slide" role="group" aria-roledescription="slide" aria-label="Testimonio 4 de 5">
             <div class="testi-card">
-              <div class="testi-card__avatar" style="background:var(--terracota-2)" aria-hidden="true">DA</div>
-              <div class="testi-card__stars" aria-hidden="true">★★★★★</div>
-              <p class="testi-card__quote">“Llevo 21 días con el Reto Anahata y no solo cambió mi piel, cambió la forma en que me relaciono con el sol.”</p>
-              <p class="testi-card__name">Daniela A. <span>· Cali</span></p>
+              <img src="assets/testimonios/testi-4.jpg" alt="Captura de un mensaje de voz de una clienta contando su experiencia bronceándose con D'ORÉ Anahata." loading="lazy" />
+            </div>
+          </li>
+
+          <li class="testi__slide" role="group" aria-roledescription="slide" aria-label="Testimonio 5 de 5">
+            <div class="testi-card">
+              <img src="assets/testimonios/testi-5.jpg" alt="Clienta sosteniendo el Activador Solar D'ORÉ Anahata en un bote, con el comentario 'Me encantó!'." loading="lazy" />
             </div>
           </li>
 
