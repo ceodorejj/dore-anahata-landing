@@ -165,16 +165,32 @@
   </div>
 </section>
 
-<!-- ============ TESTIMONIOS ============ -->
-<section class="testimonials" id="testimonios">
-  <div class="wrap">
-    <div class="section-head section-head--center rv">
-      <span class="eyebrow">Historias del Ritual</span>
-      <h2 class="display">Voces que ya <strong>encontraron su luz.</strong></h2>
-    </div>
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span>Alquimia Solar ✦</span><span>Aceites Botanicos ✦</span><span>Ritual 20 Minutos ✦</span><span>Edicion Inaugural ✦</span><span>350 Unidades ✦</span><span>Hecho en Colombia ✦</span><span>Meditacion 528Hz ✦</span><span>Piel Hidratada y Viva ✦</span>
+    <span>Alquimia Solar ✦</span><span>Aceites Botanicos ✦</span><span>Ritual 20 Minutos ✦</span><span>Edicion Inaugural ✦</span><span>350 Unidades ✦</span><span>Hecho en Colombia ✦</span><span>Meditacion 528Hz ✦</span><span>Piel Hidratada y Viva ✦</span>
+  </div>
+</div>
 
+<!-- ============ TRANSFORM ============ -->
+<section class="transform" id="transform">
+  <div class="transform__sticky">
+    <div class="transform__side transform__side--before">
+      <img src="https://doreanahata.co/assets/photos/transform-scene.jpg" alt="" loading="lazy" />
+      <div class="transform__overlay transform__overlay--cold"></div>
+    </div>
+    <div class="transform__side transform__side--after">
+      <img src="https://doreanahata.co/assets/photos/transform-scene.jpg" alt="Logotipo D'ORÉ tallado a la luz del sol" loading="lazy" />
+      <div class="transform__overlay transform__overlay--warm"></div>
+    </div>
+    <canvas class="transform__particles" id="transformParticles" aria-hidden="true"></canvas>
+    <span class="transform__label transform__label--before">Desconexion</span>
+    <span class="transform__label transform__label--after">Conexion</span>
+
+    <!-- ============ TESTIMONIOS — overlay flotante ============ -->
     <div
-      class="testi rv"
+      class="testi"
       id="testiCarousel"
       data-autoplay="5000"
       role="region"
@@ -232,31 +248,6 @@
 
       <div class="testi__dots" id="testiDots" role="tablist" aria-label="Seleccionar testimonio"></div>
     </div>
-  </div>
-</section>
-
-<!-- ============ MARQUEE ============ -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee__track">
-    <span>Alquimia Solar ✦</span><span>Aceites Botanicos ✦</span><span>Ritual 20 Minutos ✦</span><span>Edicion Inaugural ✦</span><span>350 Unidades ✦</span><span>Hecho en Colombia ✦</span><span>Meditacion 528Hz ✦</span><span>Piel Hidratada y Viva ✦</span>
-    <span>Alquimia Solar ✦</span><span>Aceites Botanicos ✦</span><span>Ritual 20 Minutos ✦</span><span>Edicion Inaugural ✦</span><span>350 Unidades ✦</span><span>Hecho en Colombia ✦</span><span>Meditacion 528Hz ✦</span><span>Piel Hidratada y Viva ✦</span>
-  </div>
-</div>
-
-<!-- ============ TRANSFORM ============ -->
-<section class="transform" id="transform">
-  <div class="transform__sticky">
-    <div class="transform__side transform__side--before">
-      <img src="https://doreanahata.co/assets/photos/transform-scene.jpg" alt="" loading="lazy" />
-      <div class="transform__overlay transform__overlay--cold"></div>
-    </div>
-    <div class="transform__side transform__side--after">
-      <img src="https://doreanahata.co/assets/photos/transform-scene.jpg" alt="Logotipo D'ORÉ tallado a la luz del sol" loading="lazy" />
-      <div class="transform__overlay transform__overlay--warm"></div>
-    </div>
-    <canvas class="transform__particles" id="transformParticles" aria-hidden="true"></canvas>
-    <span class="transform__label transform__label--before">Desconexion</span>
-    <span class="transform__label transform__label--after">Conexion</span>
   </div>
 </section>
 

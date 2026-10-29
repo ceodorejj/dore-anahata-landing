@@ -1297,7 +1297,9 @@ requestAnimationFrame(() => {
 })();
 
 // ============================================================
-// TESTIMONIALS CAROUSEL — autoplay, dots, arrows, swipe, pause on hover
+// TESTIMONIALS — floating overlay on the sand (.transform) section
+// Desktop (>760px): every card floats in place at once, no sliding.
+// Mobile (<=760px): one-at-a-time autoplay carousel, swipe + dots.
 // ============================================================
 (function () {
   const root = document.getElementById("testiCarousel");
@@ -1306,14 +1308,12 @@ requestAnimationFrame(() => {
   const track = document.getElementById("testiTrack");
   const slides = [...track.children];
   const dotsWrap = document.getElementById("testiDots");
-  const prevBtn = root.querySelector(".testi__arrow--prev");
-  const nextBtn = root.querySelector(".testi__arrow--next");
   const interval = Number(root.dataset.autoplay) || 5000;
+  const mq = window.matchMedia("(max-width: 760px)");
+  const isCarousel = () => mq.matches;
 
   if (slides.length <= 1) {
     if (dotsWrap) dotsWrap.hidden = true;
-    if (prevBtn) prevBtn.hidden = true;
-    if (nextBtn) nextBtn.hidden = true;
     return;
   }
 
@@ -1321,7 +1321,7 @@ requestAnimationFrame(() => {
   let timer = null;
   let paused = false;
 
-  // Dots
+  // Dots (mobile-only, but built once — CSS hides them on desktop)
   const dots = slides.map((_, i) => {
     const b = document.createElement("button");
     b.type = "button";
@@ -1333,7 +1333,7 @@ requestAnimationFrame(() => {
   });
 
   function render() {
-    track.style.transform = `translateX(-${index * 100}%)`;
+    track.style.transform = isCarousel() ? `translateX(-${index * 100}%)` : "none";
     dots.forEach((d, i) => d.classList.toggle("is-active", i === index));
   }
 
@@ -1350,7 +1350,7 @@ requestAnimationFrame(() => {
   function start() {
     stop();
     timer = setInterval(() => {
-      if (!paused && !document.hidden) next();
+      if (!paused && !document.hidden && isCarousel()) next();
     }, interval);
   }
 
@@ -1363,21 +1363,19 @@ requestAnimationFrame(() => {
     start();
   }
 
-  prevBtn?.addEventListener("click", () => goTo(index - 1, true));
-  nextBtn?.addEventListener("click", () => goTo(index + 1, true));
-
-  // Pause on hover/focus (desktop)
+  // Pause on hover/focus (desktop pointer or keyboard nav)
   root.addEventListener("mouseenter", () => (paused = true));
   root.addEventListener("mouseleave", () => (paused = false));
   root.addEventListener("focusin", () => (paused = true));
   root.addEventListener("focusout", () => (paused = false));
 
-  // Swipe on touch devices
+  // Swipe on touch devices (effective in carousel/mobile mode)
   let touchStartX = 0;
   let touchDeltaX = 0;
   track.addEventListener(
     "touchstart",
     (e) => {
+      if (!isCarousel()) return;
       touchStartX = e.touches[0].clientX;
       touchDeltaX = 0;
       paused = true;
@@ -1387,15 +1385,23 @@ requestAnimationFrame(() => {
   track.addEventListener(
     "touchmove",
     (e) => {
+      if (!isCarousel()) return;
       touchDeltaX = e.touches[0].clientX - touchStartX;
     },
     { passive: true }
   );
   track.addEventListener("touchend", () => {
+    if (!isCarousel()) return;
     const THRESHOLD = 40;
     if (touchDeltaX > THRESHOLD) goTo(index - 1, true);
     else if (touchDeltaX < -THRESHOLD) goTo(index + 1, true);
     paused = false;
+  });
+
+  // Re-render (and reset the transform) whenever we cross the breakpoint.
+  mq.addEventListener("change", () => {
+    index = 0;
+    render();
   });
 
   render();

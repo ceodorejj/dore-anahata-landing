@@ -1690,78 +1690,95 @@ body{ overflow-wrap:break-word; }
 }
 
 /* ============================================================
-   TESTIMONIALS — autoplay carousel
+   TESTIMONIALS — floating overlay on the sand (.transform) section
+   Desktop: every card floats in place at once. Mobile: one-at-a-time
+   autoplay carousel (swipe + dots), no arrows.
    ============================================================ */
-.testimonials{
-  background:var(--arena-claro); padding:clamp(6rem,12vw,11rem) 0;
-}
 .testi{
-  position:relative; max-width:720px; margin-inline:auto;
-}
-.testi__viewport{
-  overflow:hidden; border-radius:var(--radius);
-}
-.testi__track{
-  display:flex; list-style:none;
-  transition:transform .6s var(--ease-out);
-}
-.testi__slide{
-  flex:0 0 100%; min-width:0;
+  position:absolute; left:0; right:0; bottom:clamp(4%,7vh,9%);
+  z-index:12; padding-inline:var(--gut);
   display:flex; justify-content:center;
 }
+.testi__viewport{
+  width:100%; max-width:1180px; overflow:visible;
+}
+.testi__track{
+  display:flex; flex-wrap:wrap; justify-content:center; align-items:flex-end;
+  gap:clamp(.7rem,2vw,1.3rem); list-style:none;
+}
+.testi__slide{
+  flex:0 0 auto; width:min(230px, 23vw);
+  animation:testiFloat 6.5s ease-in-out infinite;
+}
+.testi__slide:nth-child(2){ animation-delay:-1.6s; }
+.testi__slide:nth-child(3){ animation-delay:-3.2s; }
+.testi__slide:nth-child(4){ animation-delay:-4.8s; }
+.testi__slide:nth-child(5){ animation-delay:-2.4s; }
+@keyframes testiFloat{
+  0%,100%{ transform:translateY(0); }
+  50%{ transform:translateY(-10px); }
+}
+
 .testi-card{
-  width:100%; max-width:560px;
-  background:var(--arena); border:1px solid rgba(26,26,26,.06);
-  border-radius:var(--radius);
-  padding:clamp(2.2rem,5vw,3rem) clamp(1.6rem,4vw,2.6rem);
+  width:100%;
+  background:rgba(20,18,16,.45);
+  backdrop-filter:blur(18px) saturate(130%);
+  -webkit-backdrop-filter:blur(18px) saturate(130%);
+  border:1px solid rgba(244,239,230,.18);
+  border-radius:18px;
+  box-shadow:0 20px 50px rgba(0,0,0,.28);
+  padding:1.2rem 1.1rem;
   display:flex; flex-direction:column; align-items:center; text-align:center;
-  gap:.9rem;
+  gap:.45rem;
+  color:var(--arena);
 }
 .testi-card__avatar{
-  width:64px; height:64px; border-radius:50%;
+  width:40px; height:40px; border-radius:50%;
   display:grid; place-items:center;
-  font-family:var(--serif); font-weight:600; font-size:1.3rem;
+  font-family:var(--serif); font-weight:600; font-size:.9rem;
   color:var(--arena-claro); letter-spacing:.02em;
   overflow:hidden;
 }
 .testi-card__avatar img{ width:100%; height:100%; object-fit:cover; }
-.testi-card__stars{
-  color:var(--oro); font-size:.95rem; letter-spacing:.15em;
-}
+.testi-card__stars{ color:var(--oro); font-size:.76rem; letter-spacing:.12em; }
 .testi-card__quote{
-  font-family:var(--serif); font-size:clamp(1.05rem,2vw,1.28rem);
-  line-height:1.6; color:var(--ink); max-width:46ch;
+  font-family:var(--serif); font-size:.9rem; line-height:1.5;
+  color:var(--arena); max-width:27ch;
 }
 .testi-card__name{
-  font-size:.82rem; letter-spacing:.04em; color:var(--ink-soft);
+  font-size:.64rem; letter-spacing:.04em; color:rgba(244,239,230,.78);
   text-transform:uppercase;
 }
-.testi-card__name span{ color:rgba(26,26,26,.45); text-transform:none; letter-spacing:0; }
+.testi-card__name span{ color:rgba(244,239,230,.48); text-transform:none; letter-spacing:0; }
 
-.testi__arrow{
-  position:absolute; top:50%; translate:0 -50%;
-  width:40px; height:40px; border-radius:50%;
-  border:1px solid rgba(26,26,26,.15); background:var(--arena-claro);
-  color:var(--ink); font-size:1.3rem; line-height:1; cursor:pointer;
-  display:grid; place-items:center;
-  transition:background .25s var(--ease), transform .25s var(--ease), border-color .25s var(--ease);
-}
-.testi__arrow:hover{ background:var(--negro-humo); color:var(--arena); border-color:transparent; }
-.testi__arrow--prev{ left:clamp(-8px,-4vw,-54px); }
-.testi__arrow--next{ right:clamp(-8px,-4vw,-54px); }
-
-.testi__dots{
-  display:flex; justify-content:center; gap:.5rem; margin-top:1.6rem;
-}
-.testi__dots button{
-  width:9px; height:9px; border-radius:50%; border:0; padding:0;
-  background:rgba(26,26,26,.18); cursor:pointer;
-  transition:background .25s var(--ease), transform .25s var(--ease);
-}
-.testi__dots button.is-active{ background:var(--oro); transform:scale(1.25); }
+.testi__arrow{ display:none; }
+.testi__dots{ display:none; }
 
 @media (max-width:760px){
-  .testi__arrow{ display:none; }
+  .testi{ bottom:clamp(12%,18vh,20%); padding-inline:var(--gut); }
+  .testi__viewport{
+    max-width:320px; margin-inline:auto; overflow:hidden; border-radius:18px;
+  }
+  .testi__track{
+    flex-wrap:nowrap; gap:0;
+    transition:transform .6s var(--ease-out);
+  }
+  .testi__slide{
+    flex:0 0 100%; width:100%; animation:none;
+  }
+  .testi-card{
+    max-width:320px; margin-inline:auto; padding:1.5rem 1.3rem;
+  }
+  .testi-card__quote{ max-width:30ch; font-size:.96rem; }
+  .testi__dots{
+    display:flex; justify-content:center; gap:.4rem; margin-top:.8rem;
+  }
+  .testi__dots button{
+    width:7px; height:7px; border-radius:50%; border:0; padding:0;
+    background:rgba(244,239,230,.42); cursor:pointer;
+    transition:background .25s var(--ease), transform .25s var(--ease);
+  }
+  .testi__dots button.is-active{ background:var(--oro); transform:scale(1.3); }
 }
 
 </style>
@@ -1937,16 +1954,32 @@ body{ overflow-wrap:break-word; }
   </div>
 </section>
 
-<!-- ============ TESTIMONIOS ============ -->
-<section class="testimonials" id="testimonios">
-  <div class="wrap">
-    <div class="section-head section-head--center rv">
-      <span class="eyebrow">Historias del Ritual</span>
-      <h2 class="display">Voces que ya <strong>encontraron su luz.</strong></h2>
-    </div>
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span>Alquimia Solar ✦</span><span>Aceites Botanicos ✦</span><span>Ritual 20 Minutos ✦</span><span>Edicion Inaugural ✦</span><span>350 Unidades ✦</span><span>Hecho en Colombia ✦</span><span>Meditacion 528Hz ✦</span><span>Piel Hidratada y Viva ✦</span>
+    <span>Alquimia Solar ✦</span><span>Aceites Botanicos ✦</span><span>Ritual 20 Minutos ✦</span><span>Edicion Inaugural ✦</span><span>350 Unidades ✦</span><span>Hecho en Colombia ✦</span><span>Meditacion 528Hz ✦</span><span>Piel Hidratada y Viva ✦</span>
+  </div>
+</div>
 
+<!-- ============ TRANSFORM ============ -->
+<section class="transform" id="transform">
+  <div class="transform__sticky">
+    <div class="transform__side transform__side--before">
+      <img src="https://doreanahata.co/assets/photos/transform-scene.jpg" alt="" loading="lazy" />
+      <div class="transform__overlay transform__overlay--cold"></div>
+    </div>
+    <div class="transform__side transform__side--after">
+      <img src="https://doreanahata.co/assets/photos/transform-scene.jpg" alt="Logotipo D'ORÉ tallado a la luz del sol" loading="lazy" />
+      <div class="transform__overlay transform__overlay--warm"></div>
+    </div>
+    <canvas class="transform__particles" id="transformParticles" aria-hidden="true"></canvas>
+    <span class="transform__label transform__label--before">Desconexion</span>
+    <span class="transform__label transform__label--after">Conexion</span>
+
+    <!-- ============ TESTIMONIOS — overlay flotante ============ -->
     <div
-      class="testi rv"
+      class="testi"
       id="testiCarousel"
       data-autoplay="5000"
       role="region"
@@ -2004,31 +2037,6 @@ body{ overflow-wrap:break-word; }
 
       <div class="testi__dots" id="testiDots" role="tablist" aria-label="Seleccionar testimonio"></div>
     </div>
-  </div>
-</section>
-
-<!-- ============ MARQUEE ============ -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee__track">
-    <span>Alquimia Solar ✦</span><span>Aceites Botanicos ✦</span><span>Ritual 20 Minutos ✦</span><span>Edicion Inaugural ✦</span><span>350 Unidades ✦</span><span>Hecho en Colombia ✦</span><span>Meditacion 528Hz ✦</span><span>Piel Hidratada y Viva ✦</span>
-    <span>Alquimia Solar ✦</span><span>Aceites Botanicos ✦</span><span>Ritual 20 Minutos ✦</span><span>Edicion Inaugural ✦</span><span>350 Unidades ✦</span><span>Hecho en Colombia ✦</span><span>Meditacion 528Hz ✦</span><span>Piel Hidratada y Viva ✦</span>
-  </div>
-</div>
-
-<!-- ============ TRANSFORM ============ -->
-<section class="transform" id="transform">
-  <div class="transform__sticky">
-    <div class="transform__side transform__side--before">
-      <img src="https://doreanahata.co/assets/photos/transform-scene.jpg" alt="" loading="lazy" />
-      <div class="transform__overlay transform__overlay--cold"></div>
-    </div>
-    <div class="transform__side transform__side--after">
-      <img src="https://doreanahata.co/assets/photos/transform-scene.jpg" alt="Logotipo D'ORÉ tallado a la luz del sol" loading="lazy" />
-      <div class="transform__overlay transform__overlay--warm"></div>
-    </div>
-    <canvas class="transform__particles" id="transformParticles" aria-hidden="true"></canvas>
-    <span class="transform__label transform__label--before">Desconexion</span>
-    <span class="transform__label transform__label--after">Conexion</span>
   </div>
 </section>
 
@@ -3643,7 +3651,9 @@ requestAnimationFrame(() => {
 })();
 
 // ============================================================
-// TESTIMONIALS CAROUSEL — autoplay, dots, arrows, swipe, pause on hover
+// TESTIMONIALS — floating overlay on the sand (.transform) section
+// Desktop (>760px): every card floats in place at once, no sliding.
+// Mobile (<=760px): one-at-a-time autoplay carousel, swipe + dots.
 // ============================================================
 (function () {
   const root = document.getElementById("testiCarousel");
@@ -3652,14 +3662,12 @@ requestAnimationFrame(() => {
   const track = document.getElementById("testiTrack");
   const slides = [...track.children];
   const dotsWrap = document.getElementById("testiDots");
-  const prevBtn = root.querySelector(".testi__arrow--prev");
-  const nextBtn = root.querySelector(".testi__arrow--next");
   const interval = Number(root.dataset.autoplay) || 5000;
+  const mq = window.matchMedia("(max-width: 760px)");
+  const isCarousel = () => mq.matches;
 
   if (slides.length <= 1) {
     if (dotsWrap) dotsWrap.hidden = true;
-    if (prevBtn) prevBtn.hidden = true;
-    if (nextBtn) nextBtn.hidden = true;
     return;
   }
 
@@ -3667,7 +3675,7 @@ requestAnimationFrame(() => {
   let timer = null;
   let paused = false;
 
-  // Dots
+  // Dots (mobile-only, but built once — CSS hides them on desktop)
   const dots = slides.map((_, i) => {
     const b = document.createElement("button");
     b.type = "button";
@@ -3679,7 +3687,7 @@ requestAnimationFrame(() => {
   });
 
   function render() {
-    track.style.transform = `translateX(-${index * 100}%)`;
+    track.style.transform = isCarousel() ? `translateX(-${index * 100}%)` : "none";
     dots.forEach((d, i) => d.classList.toggle("is-active", i === index));
   }
 
@@ -3696,7 +3704,7 @@ requestAnimationFrame(() => {
   function start() {
     stop();
     timer = setInterval(() => {
-      if (!paused && !document.hidden) next();
+      if (!paused && !document.hidden && isCarousel()) next();
     }, interval);
   }
 
@@ -3709,21 +3717,19 @@ requestAnimationFrame(() => {
     start();
   }
 
-  prevBtn?.addEventListener("click", () => goTo(index - 1, true));
-  nextBtn?.addEventListener("click", () => goTo(index + 1, true));
-
-  // Pause on hover/focus (desktop)
+  // Pause on hover/focus (desktop pointer or keyboard nav)
   root.addEventListener("mouseenter", () => (paused = true));
   root.addEventListener("mouseleave", () => (paused = false));
   root.addEventListener("focusin", () => (paused = true));
   root.addEventListener("focusout", () => (paused = false));
 
-  // Swipe on touch devices
+  // Swipe on touch devices (effective in carousel/mobile mode)
   let touchStartX = 0;
   let touchDeltaX = 0;
   track.addEventListener(
     "touchstart",
     (e) => {
+      if (!isCarousel()) return;
       touchStartX = e.touches[0].clientX;
       touchDeltaX = 0;
       paused = true;
@@ -3733,15 +3739,23 @@ requestAnimationFrame(() => {
   track.addEventListener(
     "touchmove",
     (e) => {
+      if (!isCarousel()) return;
       touchDeltaX = e.touches[0].clientX - touchStartX;
     },
     { passive: true }
   );
   track.addEventListener("touchend", () => {
+    if (!isCarousel()) return;
     const THRESHOLD = 40;
     if (touchDeltaX > THRESHOLD) goTo(index - 1, true);
     else if (touchDeltaX < -THRESHOLD) goTo(index + 1, true);
     paused = false;
+  });
+
+  // Re-render (and reset the transform) whenever we cross the breakpoint.
+  mq.addEventListener("change", () => {
+    index = 0;
+    render();
   });
 
   render();
