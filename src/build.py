@@ -48,6 +48,7 @@ src="https://www.facebook.com/tr?id=1061209366950588&ev=PageView&noscript=1"
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script async src="https://www.instagram.com/embed.js"></script>
 <script type="module">
 {js}
 </script>
