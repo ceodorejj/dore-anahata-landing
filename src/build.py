@@ -9,6 +9,8 @@ html=f'''<!DOCTYPE html>
 <title>D'ORÉ Anahata - Aceite corporal hidratante de uso diario</title>
 <meta name="description" content="D'ORÉ es un aceite corporal hidratante de uso diario, formulado con aceites botanicos, que acompaña tu bronceado cuando te expones al sol. Edicion inaugural, 350 frascos numerados a mano." />
 <meta name="theme-color" content="#1A1A1A" />
+<link rel="icon" type="image/svg+xml" href="https://doreanahata.co/assets/logo.svg" />
+<link rel="apple-touch-icon" href="https://doreanahata.co/assets/logo.svg" />
 
 <!-- Meta Pixel Code -->
 <script>
