@@ -1161,6 +1161,40 @@ wireLeadForm(document.getElementById("b2bForm"), {
 // straight to checkout like any other purchase button.
 
 // ============================================================
+// 16b) STICKY MOBILE BUY BAR
+//      Shows once the visitor scrolls past the hero's own buy button,
+//      so there's always a one-tap way to purchase on mobile.
+// ============================================================
+(function stickyBuyBar() {
+  const bar = document.getElementById("stickyBuy");
+  if (!bar) return;
+
+  const setBarHeight = () => {
+    document.documentElement.style.setProperty("--sticky-buy-h", bar.offsetHeight + "px");
+  };
+  setBarHeight();
+  window.addEventListener("resize", setBarHeight);
+
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const pastHero = window.scrollY > window.innerHeight * 0.6;
+    bar.classList.toggle("is-visible", pastHero);
+    document.body.classList.toggle("has-sticky-buy", pastHero);
+  };
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    },
+    { passive: true }
+  );
+  update();
+})();
+
+// ============================================================
 // 17) REFRESH — recalculate all ScrollTrigger positions
 //     after hero pin spacer modifies document flow
 // ============================================================

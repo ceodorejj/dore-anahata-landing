@@ -565,6 +565,20 @@ a{ color:inherit; text-decoration:none; }
 /* ============================================================
    MARQUEE
    ============================================================ */
+/* ---------- Sticky mobile buy bar ---------- */
+.sticky-buy{
+  display:none;
+  position:fixed; left:0; right:0; bottom:0; z-index:48;
+  padding:.65rem var(--gut) max(.65rem, env(safe-area-inset-bottom));
+  background:rgba(20,16,14,.92);
+  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  border-top:1px solid rgba(217,164,39,.22);
+  transform:translateY(100%);
+  transition:transform .35s var(--ease-out);
+}
+.sticky-buy.is-visible{ transform:translateY(0); }
+@media(max-width:760px){ .sticky-buy{ display:block; } }
+
 .mid-cta{
   display:flex; justify-content:center;
   padding:clamp(2.2rem,5vw,3.2rem) var(--gut);
@@ -1709,8 +1723,12 @@ body{ overflow-wrap:break-word; }
   display:grid; place-items:center;
   background:#25D366;
   box-shadow:0 6px 20px rgba(0,0,0,.25);
-  transition:transform .3s var(--ease-out), box-shadow .3s var(--ease-out);
+  transition:transform .3s var(--ease-out), box-shadow .3s var(--ease-out), bottom .35s var(--ease-out);
 }
+/* Lift the WhatsApp bubble (and the proof toast) above the sticky buy
+   bar on mobile so the bar doesn't cover them. */
+body.has-sticky-buy .whatsapp-float{ bottom:calc(var(--sticky-buy-h, 70px) + clamp(12px,2.5vw,20px)); }
+body.has-sticky-buy .proof{ bottom:calc(var(--sticky-buy-h, 70px) + clamp(12px,2.5vw,20px)); }
 .whatsapp-float:hover,
 .whatsapp-float:focus-visible{
   transform:scale(1.08);
@@ -1891,7 +1909,7 @@ body{ overflow-wrap:break-word; }
     <a class="pill pill--nav" href="#ritual">El Ritual</a>
     <a class="pill pill--nav" href="#portal">El Portal</a>
   </nav>
-  <a href="https://dore-anahata.myshopify.com/cart/44623557951591:1" class="btn btn--gold btn--sm nav__cta" target="_blank" rel="noopener" data-magnetic>Reclama tu derecho a la luz</a>
+  <a href="https://dore-anahata.myshopify.com/cart/44623557951591:1" class="btn btn--gold btn--sm nav__cta" target="_blank" rel="noopener" data-magnetic>Comprar ahora</a>
   <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
     <span></span><span></span><span></span>
   </button>
@@ -1906,6 +1924,11 @@ body{ overflow-wrap:break-word; }
     <a href="#portal">El Portal</a>
     <a href="https://dore-anahata.myshopify.com/cart/44623557951591:1" class="btn btn--gold" target="_blank" rel="noopener">Reclama tu derecho a la luz</a>
   </nav>
+</div>
+
+<!-- ============ STICKY MOBILE BUY BAR ============ -->
+<div class="sticky-buy" id="stickyBuy" aria-hidden="true">
+  <a href="https://dore-anahata.myshopify.com/cart/44623557951591:1" class="btn btn--gold btn--block" target="_blank" rel="noopener">Comprar ahora</a>
 </div>
 
 <main>
@@ -3642,6 +3665,40 @@ wireLeadForm(document.getElementById("b2bForm"), {
 // waitlist reservation form while the product's sanitary registration
 // (NSO/INVIMA) was pending; now that registration is confirmed, it goes
 // straight to checkout like any other purchase button.
+
+// ============================================================
+// 16b) STICKY MOBILE BUY BAR
+//      Shows once the visitor scrolls past the hero's own buy button,
+//      so there's always a one-tap way to purchase on mobile.
+// ============================================================
+(function stickyBuyBar() {
+  const bar = document.getElementById("stickyBuy");
+  if (!bar) return;
+
+  const setBarHeight = () => {
+    document.documentElement.style.setProperty("--sticky-buy-h", bar.offsetHeight + "px");
+  };
+  setBarHeight();
+  window.addEventListener("resize", setBarHeight);
+
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const pastHero = window.scrollY > window.innerHeight * 0.6;
+    bar.classList.toggle("is-visible", pastHero);
+    document.body.classList.toggle("has-sticky-buy", pastHero);
+  };
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    },
+    { passive: true }
+  );
+  update();
+})();
 
 // ============================================================
 // 17) REFRESH — recalculate all ScrollTrigger positions
