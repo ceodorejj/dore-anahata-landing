@@ -2926,8 +2926,15 @@ if (!reduceMotion && !isStaticHero) {
 
     // PHASE 1 → 2: Cinematic transition
     // Fade out brand UI and move up
+    // Once invisible it must also stop intercepting clicks: GSAP only
+    // animates opacity/y here, it never touches pointer-events, so the
+    // (now invisible) nav/hero buttons underneath were still sitting on
+    // top of phase 2's content, silently swallowing taps meant for it --
+    // which read as "the buy button gets disabled after you scroll".
     heroTl.to(heroPhase1, {
-      opacity: 0, y: -40, duration: 1, ease: "power2.in"
+      opacity: 0, y: -40, duration: 1, ease: "power2.in",
+      onComplete: () => { heroPhase1.style.pointerEvents = "none"; },
+      onReverseComplete: () => { heroPhase1.style.pointerEvents = ""; }
     }, 0);
 
     // Release the legibility scrim once the copy is gone (mobile only in CSS)
@@ -2971,6 +2978,8 @@ if (!reduceMotion && !isStaticHero) {
     heroTl.to(heroPhase2, {
       opacity: 1, duration: 0.6, onStart: () => {
         heroPhase2.style.pointerEvents = "auto";
+      }, onReverseComplete: () => {
+        heroPhase2.style.pointerEvents = "none";
       }
     }, 1.2);
 
