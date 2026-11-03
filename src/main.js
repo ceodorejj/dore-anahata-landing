@@ -1147,6 +1147,16 @@ requestAnimationFrame(() => {
   ScrollTrigger.refresh();
 });
 
+// The hero's pinned product/ambient images have no intrinsic size reserved
+// in CSS, so the very first refresh above can run before they've finished
+// loading. ScrollTrigger then pins/positions the product against a hero
+// height that's about to change, which reads as the bottle "jumping" or
+// landing off-center mid-scroll once the real image dimensions land.
+// Refresh once more after everything (images included) has actually loaded.
+window.addEventListener("load", () => {
+  ScrollTrigger.refresh();
+});
+
 // ============================================================
 // 18) ACTIVITY TOAST — bottom-left social proof
 //     Driven by /api/social-proof, which reports waiting-list
