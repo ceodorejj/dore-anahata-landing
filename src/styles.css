@@ -238,7 +238,7 @@ a{ color:inherit; text-decoration:none; }
    HERO — CINEMATIC 3-PHASE SLIDER
    ============================================================ */
 .hero{
-  position:relative; height:100vh; overflow:hidden;
+  position:relative; height:calc(var(--vh, 1vh) * 100); overflow:hidden;
   background:var(--negro-humo); color:var(--arena);
 }
 
@@ -522,6 +522,12 @@ a{ color:inherit; text-decoration:none; }
 /* ============================================================
    MARQUEE
    ============================================================ */
+.mid-cta{
+  display:flex; justify-content:center;
+  padding:clamp(2.2rem,5vw,3.2rem) var(--gut);
+  background:var(--negro-humo);
+}
+
 .marquee{
   overflow:hidden; background:var(--negro-humo);
   padding:1rem 0; border-top:1px solid rgba(217,164,39,.15);
@@ -784,7 +790,7 @@ a{ color:inherit; text-decoration:none; }
 }
 .ritual__viewport{
   position:relative;
-  width:100%; height:100vh;
+  width:100%; height:calc(var(--vh, 1vh) * 100);
   overflow:hidden;
 }
 .ritual__slide{
@@ -908,9 +914,8 @@ a{ color:inherit; text-decoration:none; }
    ============================================================ */
 .manifesto{
   position:relative; overflow:hidden;
-  min-height:100vh;
   display:flex; align-items:center; justify-content:center;
-  padding:clamp(6rem,12vw,10rem) 0;
+  padding:clamp(2.5rem,6vw,4rem) 0;
 }
 .manifesto__bg{
   position:absolute; inset:0; z-index:0;
@@ -1358,7 +1363,6 @@ body{ overflow-wrap:break-word; }
 @supports (height:100svh){
   .hero{ height:100svh; }
   .ritual__viewport{ height:100svh; }
-  .manifesto{ min-height:100svh; }
 }
 @media(min-width:761px){
   @supports (height:100svh){ .transform__sticky{ height:100svh; } }
@@ -1372,6 +1376,21 @@ body{ overflow-wrap:break-word; }
 }
 .footer{ padding-bottom:max(2.5rem, calc(env(safe-area-inset-bottom) + 1.5rem)); }
 .proof{ left:max(var(--gut), env(safe-area-inset-left)); bottom:max(16px, env(safe-area-inset-bottom)); }
+
+/* Footer reads as a left-ragged list on narrow screens; center it instead. */
+@media(max-width:760px){
+  .footer__inner{
+    grid-template-columns:1fr; justify-items:center; text-align:center;
+  }
+  .footer__brand{ align-items:center; }
+  .footer__cols{
+    grid-template-columns:1fr; gap:1.8rem; justify-items:center; text-align:center;
+    width:100%;
+  }
+  .footer__social{ justify-content:center; }
+  .footer__legal{ text-align:center; }
+  .footer__legal p{ margin-inline:auto; }
+}
 
 /* ---------- Navigation: burger up to tablet portrait ---------- */
 @media(max-width:1023px){

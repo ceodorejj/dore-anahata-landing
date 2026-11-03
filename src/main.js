@@ -12,6 +12,19 @@ const isLite = document.documentElement.classList.contains("is-lite");
 const isStaticHero = document.documentElement.classList.contains("is-static-hero");
 let THREE = null; // loaded on demand, only when it will actually be used
 
+// Mobile browsers resize their address/tab bar without firing a real resize
+// in a timely way, so plain `100vh` in CSS is measured against the TALL
+// state and pinned full-height sections (hero, ritual cinema) end up with
+// their last bit of content hidden under the bar. `100svh` (added via
+// @supports below) fixes this on browsers that support it; --vh is a JS
+// fallback for the ones that don't, kept in sync with the real visible height.
+function setViewportHeightVar() {
+  document.documentElement.style.setProperty("--vh", window.innerHeight * 0.01 + "px");
+}
+setViewportHeightVar();
+window.addEventListener("resize", setViewportHeightVar);
+window.addEventListener("orientationchange", setViewportHeightVar);
+
 // Rotating a phone switches between the pinned hero and the static one;
 // reloading is the simplest way to rebuild every pin/scrub correctly.
 window
